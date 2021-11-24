@@ -7,14 +7,19 @@ export const defaultConfiguration: Required<Configuration> = {
   entryFile: 'main',
   projects: {},
   monorepo: false,
+  root: undefined,
   compilerOptions: {
     tsConfigPath: 'tsconfig.build.json',
     webpack: false,
     webpackConfigPath: 'webpack.config.js',
     plugins: [],
     assets: [],
+    watchAssets: false,
+    deleteOutDir: false,
   },
-  generateOptions: {},
+  generateOptions: {
+    spec: {},
+  },
 };
 
 export const defaultOutDir = 'dist';

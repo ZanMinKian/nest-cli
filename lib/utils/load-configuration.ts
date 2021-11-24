@@ -1,9 +1,16 @@
 import {
   Configuration,
   ConfigurationLoader,
+  configurationSchema,
   NestConfigurationLoader,
 } from '../configuration';
 import { FileSystemReader } from '../readers';
+
+function validateConfiguration(configuration: Configuration): Configuration {
+  const { error, value } = configurationSchema.validate(configuration);
+  if (error) throw error;
+  return value;
+}
 
 export async function loadConfiguration(
   name?: string,
@@ -11,5 +18,5 @@ export async function loadConfiguration(
   const loader: ConfigurationLoader = new NestConfigurationLoader(
     new FileSystemReader(process.cwd()),
   );
-  return loader.load(name);
+  return validateConfiguration(await loader.load(name));
 }

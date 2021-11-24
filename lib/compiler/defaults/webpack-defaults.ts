@@ -12,7 +12,7 @@ export const webpackDefaultsFactory = (
   relativeSourceRoot: string,
   entryFilename: string,
   isDebugEnabled = false,
-  tsConfigFile = defaultConfiguration.compilerOptions.tsConfigPath,
+  tsConfigFile = defaultConfiguration.compilerOptions?.tsConfigPath,
   plugins: MultiNestCompilerPlugins,
 ): webpack.Configuration => ({
   entry: appendTsExtension(join(sourceRoot, entryFilename)),
